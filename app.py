@@ -102,8 +102,15 @@ app.layout = html.Div(id="app-container", className="theme-light", children=[
             ], className="single-line-tabs")
         ], className="tabs-bar-wrapper mb-4"),
         
-        # Dynamic Main Tab Content
-        html.Div(id="main-tab-content", className="mt-2"),
+        # Dynamic Main Tab Content with smooth transitions
+        dcc.Loading(
+            id="main-tab-loading",
+            type="dot",
+            color="#10b981",
+            children=[
+                html.Div(id="main-tab-content", className="mt-2 tab-fade-in")
+            ]
+        ),
         
         # Footer
         html.Footer([

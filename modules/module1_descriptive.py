@@ -80,7 +80,7 @@ def central_tendency_layout():
                     dcc.Slider(
                         id="m1-sample-size",
                         min=50, max=1000, step=50, value=300,
-                        marks={50: '50', 300: '300', 600: '600', 1000: '1000'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -88,7 +88,7 @@ def central_tendency_layout():
                     dcc.Slider(
                         id="m1-outlier-val",
                         min=0, max=100, step=10, value=0,
-                        marks={0: 'No Outliers', 30: '+30 (Mild)', 60: '+60 (Mod)', 100: '+100 (Extreme)'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -149,7 +149,7 @@ def variability_layout():
                     dcc.Slider(
                         id="m1-var-mean",
                         min=20, max=100, step=5, value=50,
-                        marks={20: '20', 50: '50', 80: '80', 100: '100'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -157,7 +157,7 @@ def variability_layout():
                     dcc.Slider(
                         id="m1-var-std",
                         min=2, max=25, step=1, value=10,
-                        marks={2: '2 (Tight)', 10: '10', 18: '18', 25: '25 (Wide)'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -247,7 +247,7 @@ def graphical_summaries_layout():
                     # Persistent container for Histogram controls (always in DOM)
                     html.Div(id="m1-hist-controls", children=[
                         html.Label("Histogram Bin Count:", className="control-label"),
-                        dcc.Slider(id="m1-hist-bins", min=10, max=60, step=5, value=25, marks={10: '10', 25: '25', 60: '60'}),
+                        dcc.Slider(id="m1-hist-bins", min=10, max=60, step=5, value=25, marks=None),
                         html.Label("Variable to Plot:", className="control-label mt-2"),
                         dcc.Dropdown(
                             id="m1-hist-var",

@@ -107,7 +107,7 @@ def part1_layout():
                     dcc.Slider(
                         id="m5-clean-iqr-mult",
                         min=1.0, max=3.0, step=0.5, value=2.0,
-                        marks={1.0: '1.0 (Strict)', 1.5: '1.5 (Tukey Standard)', 2.0: '2.0 (Mild)', 3.0: '3.0 (Retain All)'},
+                        marks=None,
                         className="mb-3"
                     ),
                     

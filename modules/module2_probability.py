@@ -53,7 +53,7 @@ def bayes_layout():
                     dcc.Slider(
                         id="m2-bayes-prior",
                         min=0.01, max=0.50, step=0.01, value=0.08,
-                        marks={0.01: '1%', 0.08: '8%', 0.25: '25%', 0.50: '50%'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -61,7 +61,7 @@ def bayes_layout():
                     dcc.Slider(
                         id="m2-bayes-sens",
                         min=0.50, max=0.99, step=0.01, value=0.92,
-                        marks={0.5: '50%', 0.75: '75%', 0.92: '92%', 0.99: '99%'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -69,7 +69,7 @@ def bayes_layout():
                     dcc.Slider(
                         id="m2-bayes-fpr",
                         min=0.01, max=0.30, step=0.01, value=0.05,
-                        marks={0.01: '1%', 0.05: '5%', 0.15: '15%', 0.30: '30%'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -141,44 +141,44 @@ def distributions_layout():
                     # Normal Controls Container
                     html.Div(id="m2-ctrls-norm", children=[
                         html.Label("Mean (μ):", className="control-label"),
-                        dcc.Slider(id="m2-norm-mu", min=-10, max=10, step=1, value=0, marks={-10: '-10', 0: '0', 10: '10'}),
+                        dcc.Slider(id="m2-norm-mu", min=-10, max=10, step=1, value=0, marks=None),
                         html.Label("Std Dev (σ):", className="control-label mt-2"),
-                        dcc.Slider(id="m2-norm-sigma", min=0.5, max=5, step=0.5, value=1.0, marks={0.5: '0.5', 1: '1', 3: '3', 5: '5'})
+                        dcc.Slider(id="m2-norm-sigma", min=0.5, max=5, step=0.5, value=1.0, marks=None)
                     ], style={'display': 'block'}),
                     
                     # Binomial Controls Container
                     html.Div(id="m2-ctrls-binom", children=[
                         html.Label("Number of Trials (n):", className="control-label"),
-                        dcc.Slider(id="m2-binom-n", min=5, max=50, step=1, value=20, marks={5: '5', 20: '20', 50: '50'}),
+                        dcc.Slider(id="m2-binom-n", min=5, max=50, step=1, value=20, marks=None),
                         html.Label("Success Probability (p):", className="control-label mt-2"),
-                        dcc.Slider(id="m2-binom-p", min=0.05, max=0.95, step=0.05, value=0.4, marks={0.1: '0.1', 0.5: '0.5', 0.9: '0.9'})
+                        dcc.Slider(id="m2-binom-p", min=0.05, max=0.95, step=0.05, value=0.4, marks=None)
                     ], style={'display': 'none'}),
                     
                     # Poisson Controls Container
                     html.Div(id="m2-ctrls-pois", children=[
                         html.Label("Rate Parameter (λ):", className="control-label"),
-                        dcc.Slider(id="m2-pois-lam", min=0.5, max=25, step=0.5, value=5.0, marks={1: '1', 5: '5', 15: '15', 25: '25'})
+                        dcc.Slider(id="m2-pois-lam", min=0.5, max=25, step=0.5, value=5.0, marks=None)
                     ], style={'display': 'none'}),
                     
                     # Exponential Controls Container
                     html.Div(id="m2-ctrls-exp", children=[
                         html.Label("Rate Parameter (λ):", className="control-label"),
-                        dcc.Slider(id="m2-exp-lam", min=0.2, max=3.0, step=0.2, value=1.0, marks={0.2: '0.2', 1.0: '1.0', 3.0: '3.0'})
+                        dcc.Slider(id="m2-exp-lam", min=0.2, max=3.0, step=0.2, value=1.0, marks=None)
                     ], style={'display': 'none'}),
                     
                     # Uniform Controls Container
                     html.Div(id="m2-ctrls-unif", children=[
                         html.Label("Lower Bound (a):", className="control-label"),
-                        dcc.Slider(id="m2-unif-a", min=-10, max=0, step=1, value=0, marks={-10: '-10', 0: '0'}),
+                        dcc.Slider(id="m2-unif-a", min=-10, max=0, step=1, value=0, marks=None),
                         html.Label("Upper Bound (b):", className="control-label mt-2"),
-                        dcc.Slider(id="m2-unif-b", min=1, max=10, step=1, value=5, marks={1: '1', 5: '5', 10: '10'})
+                        dcc.Slider(id="m2-unif-b", min=1, max=10, step=1, value=5, marks=None)
                     ], style={'display': 'none'}),
                     
                     html.Label("Calculate P(X ≤ Cutoff):", className="control-label mt-3"),
                     dcc.Slider(
                         id="m2-cutoff-val",
                         min=-10, max=50, step=0.5, value=1.0,
-                        marks={-10: '-10', 0: '0', 10: '10', 25: '25', 50: '50'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -219,7 +219,7 @@ def expectation_lln_layout():
                     dcc.Slider(
                         id="m2-lln-trials",
                         min=100, max=3000, step=100, value=1000,
-                        marks={100: '100', 1000: '1000', 2000: '2000', 3000: '3000'},
+                        marks=None,
                         className="mb-3"
                     ),
                     

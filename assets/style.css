@@ -1002,15 +1002,21 @@ body, #app-container.theme-light {
     opacity: 1 !important;
 }
 .rc-slider-step {
-    background: transparent !important;
+    display: none !important;
 }
 .rc-slider-dot {
-    bottom: -2px !important;
-    width: 10px !important;
-    height: 10px !important;
-}
-.rc-slider-mark, .rc-slider-mark-text {
     display: none !important;
+}
+.rc-slider-mark, 
+.rc-slider-mark-text,
+.rc-slider-mark-text-active,
+.rc-slider-mark > span {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    opacity: 0 !important;
 }
 
 .rc-slider-tooltip, .rc-tooltip {
@@ -1138,3 +1144,56 @@ body, #app-container.theme-light {
         font-size: 0.72rem !important;
     }
 }
+
+/* ==================================================================== */
+/* 5. SILKY SMOOTH PAGE & TAB TRANSITIONS                                */
+/* ==================================================================== */
+
+@keyframes pageSlideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardSmoothPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.985) translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#main-tab-content,
+.tab-fade-in,
+#m1-content,
+#m2-content,
+#m3-content,
+#m4-content,
+#m5-content {
+    animation: pageSlideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    will-change: opacity, transform;
+}
+
+.stat-card {
+    animation: cardSmoothPop 0.38s cubic-bezier(0.16, 1, 0.3, 1) backwards !important;
+    will-change: opacity, transform;
+}
+
+/* Smooth tab button active indicator animation */
+.custom-tab, .nav-tabs .nav-link, .tab {
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Smooth chart transition */
+.dash-graph, .js-plotly-plot {
+    transition: opacity 0.25s ease !important;
+}
+

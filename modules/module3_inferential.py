@@ -69,7 +69,7 @@ def clt_layout():
                     dcc.Slider(
                         id="m3-clt-n",
                         min=2, max=100, step=2, value=30,
-                        marks={2: 'n=2', 10: '10', 30: '30 (Rule of Thumb)', 60: '60', 100: '100'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -77,7 +77,7 @@ def clt_layout():
                     dcc.Slider(
                         id="m3-clt-k",
                         min=100, max=2000, step=100, value=1000,
-                        marks={100: '100', 500: '500', 1000: '1000', 2000: '2000'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -148,7 +148,7 @@ def confidence_intervals_layout():
                     dcc.Slider(
                         id="m3-ci-n",
                         min=15, max=150, step=15, value=45,
-                        marks={15: '15', 45: '45', 90: '90', 150: '150'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -226,7 +226,7 @@ def hypothesis_testing_layout():
                     dcc.Slider(
                         id="m3-ht-mu0",
                         min=3.0, max=6.0, step=0.1, value=4.5,
-                        marks={3.0: '3.0', 4.5: '4.5', 6.0: '6.0'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -234,7 +234,7 @@ def hypothesis_testing_layout():
                     dcc.Slider(
                         id="m3-ht-xbar",
                         min=3.0, max=6.0, step=0.1, value=4.9,
-                        marks={3.0: '3.0', 4.5: '4.5', 4.9: '4.9', 6.0: '6.0'},
+                        marks=None,
                         className="mb-3"
                     ),
                     
@@ -242,7 +242,7 @@ def hypothesis_testing_layout():
                     dcc.Slider(
                         id="m3-ht-n",
                         min=10, max=100, step=5, value=35,
-                        marks={10: '10', 35: '35', 70: '70', 100: '100'},
+                        marks=None,
                         className="mb-3"
                     ),
                 ], className="stat-card h-100")
@@ -291,16 +291,16 @@ def chisq_power_layout():
                     html.P("Examine association between Climate Risk Level and Crop Yield Outcomes (High vs Low Yield).", className="control-desc"),
                     
                     html.Label("Contingency Table Counts (Low Risk - High Yield):", className="control-label mt-2"),
-                    dcc.Slider(id="m3-chi-c1", min=20, max=200, step=10, value=140, marks={20: '20', 140: '140', 200: '200'}),
+                    dcc.Slider(id="m3-chi-c1", min=20, max=200, step=10, value=140, marks=None),
                     
                     html.Label("Low Risk - Low Yield:", className="control-label mt-2"),
-                    dcc.Slider(id="m3-chi-c2", min=10, max=150, step=10, value=40, marks={10: '10', 40: '40', 150: '150'}),
+                    dcc.Slider(id="m3-chi-c2", min=10, max=150, step=10, value=40, marks=None),
                     
                     html.Label("High Climate Risk - High Yield:", className="control-label mt-2"),
-                    dcc.Slider(id="m3-chi-c3", min=10, max=150, step=10, value=50, marks={10: '10', 50: '50', 150: '150'}),
+                    dcc.Slider(id="m3-chi-c3", min=10, max=150, step=10, value=50, marks=None),
                     
                     html.Label("High Climate Risk - Low Yield:", className="control-label mt-2"),
-                    dcc.Slider(id="m3-chi-c4", min=20, max=200, step=10, value=130, marks={20: '20', 130: '130', 200: '200'}),
+                    dcc.Slider(id="m3-chi-c4", min=20, max=200, step=10, value=130, marks=None),
                 ], className="stat-card h-100")
             ], className="col-12 col-lg-4 mb-4"),
             
