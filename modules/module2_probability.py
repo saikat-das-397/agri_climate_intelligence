@@ -10,14 +10,19 @@ from scipy import stats
 import plotly.graph_objects as go
 from dash import html, dcc, Input, Output, callback
 
-DARK_LAYOUT = {
-    'paper_bgcolor': 'rgba(0,0,0,0)',
-    'plot_bgcolor': 'rgba(6, 19, 14, 0.65)',
+import plotly.io as pio
+pio.templates.default = "plotly_dark"
+
+PLOT_LAYOUT = {
+    'template': 'plotly_dark',
+    'paper_bgcolor': '#081a13',
+    'plot_bgcolor': '#0c241b',
     'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
+    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
+DARK_LAYOUT = PLOT_LAYOUT
 
 def layout():
     return html.Div([
@@ -365,7 +370,7 @@ def register_callbacks(app):
             k = np.arange(0, bn + 1)
             pmf = stats.binom.pmf(k, bn, bp)
             prob = stats.binom.cdf(int(cutoff), bn, bp)
-            colors = ['#10b981' if ki <= cutoff else '#334155' for ki in k]
+            colors = ['#10b981' if ki <= cutoff else '#cbd5e1' for ki in k]
             
             fig.add_trace(go.Bar(x=k, y=pmf, marker_color=colors, name='PMF P(X=k)'))
             title_text = f"Binomial Distribution Bin(n={bn}, p={bp}) — Discrete PMF"
@@ -375,7 +380,7 @@ def register_callbacks(app):
             k = np.arange(0, int(lam + 4*np.sqrt(lam)) + 2)
             pmf = stats.poisson.pmf(k, lam)
             prob = stats.poisson.cdf(int(cutoff), lam)
-            colors = ['#f59e0b' if ki <= cutoff else '#334155' for ki in k]
+            colors = ['#f59e0b' if ki <= cutoff else '#cbd5e1' for ki in k]
             
             fig.add_trace(go.Bar(x=k, y=pmf, marker_color=colors, name='PMF P(X=k)'))
             title_text = f"Poisson Distribution Pois(λ={lam}) — Discrete PMF"

@@ -11,6 +11,9 @@ import dash
 from dash import html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
+import plotly.io as pio
+pio.templates.default = "plotly_dark"
+
 # Import modules
 from modules import (
     module1_descriptive,

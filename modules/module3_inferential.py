@@ -11,14 +11,19 @@ import plotly.graph_objects as go
 import plotly.express as px
 from dash import html, dcc, Input, Output, callback
 
-DARK_LAYOUT = {
-    'paper_bgcolor': 'rgba(0,0,0,0)',
-    'plot_bgcolor': 'rgba(6, 19, 14, 0.65)',
+import plotly.io as pio
+pio.templates.default = "plotly_dark"
+
+PLOT_LAYOUT = {
+    'template': 'plotly_dark',
+    'paper_bgcolor': '#081a13',
+    'plot_bgcolor': '#0c241b',
     'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
+    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
+DARK_LAYOUT = PLOT_LAYOUT
 
 def layout():
     return html.Div([
@@ -513,7 +518,7 @@ def register_callbacks(app):
         crit_t = stats.t.ppf(1 - alpha/2, df=df)
         
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=x_vals, y=y_vals, mode='lines', line=dict(color='#e2e8f0', width=2), name='Null Distribution (H₀)'))
+        fig.add_trace(go.Scatter(x=x_vals, y=y_vals, mode='lines', line=dict(color='#38bdf8', width=2), name='Null Distribution (H₀)'))
         
         # Shaded Rejection Regions
         x_left = np.linspace(-4, -crit_t, 100)

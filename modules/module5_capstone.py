@@ -15,14 +15,19 @@ import plotly.graph_objects as go
 import plotly.express as px
 from dash import html, dcc, Input, Output, State, dash_table
 
-DARK_LAYOUT = {
-    'paper_bgcolor': 'rgba(0,0,0,0)',
-    'plot_bgcolor': 'rgba(6, 19, 14, 0.65)',
+import plotly.io as pio
+pio.templates.default = "plotly_dark"
+
+PLOT_LAYOUT = {
+    'template': 'plotly_dark',
+    'paper_bgcolor': '#081a13',
+    'plot_bgcolor': '#0c241b',
     'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.12)', 'zerolinecolor': 'rgba(52, 211, 153, 0.25)'},
+    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
+DARK_LAYOUT = PLOT_LAYOUT
 
 def load_data():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -408,16 +413,16 @@ def register_callbacks(app):
             data=summary_df.to_dict('records'),
             columns=[{'name': i, 'id': i} for i in summary_df.columns],
             style_header={
-                'backgroundColor': '#071510',
+                'backgroundColor': '#071a13',
                 'color': '#34d399',
                 'fontWeight': 'bold',
-                'borderBottom': '1.5px solid #164e39'
+                'borderBottom': '1.5px solid #164836'
             },
             style_cell={
                 'backgroundColor': '#0c241b',
                 'color': '#f0fdf4',
                 'padding': '10px 14px',
-                'border': '1px solid #164e39',
+                'border': '1px solid #164836',
                 'fontFamily': 'Plus Jakarta Sans, sans-serif'
             },
             style_as_list_view=True
@@ -487,8 +492,8 @@ def register_callbacks(app):
         coef_table = dash_table.DataTable(
             data=coef_df.to_dict('records'),
             columns=[{'name': i, 'id': i} for i in coef_df.columns],
-            style_header={'backgroundColor': '#071510', 'color': '#34d399', 'fontWeight': 'bold'},
-            style_cell={'backgroundColor': '#0c241b', 'color': '#f0fdf4', 'padding': '8px 12px', 'border': '1px solid #164e39'}
+            style_header={'backgroundColor': '#071a13', 'color': '#34d399', 'fontWeight': 'bold', 'borderBottom': '1.5px solid #164836'},
+            style_cell={'backgroundColor': '#0c241b', 'color': '#f0fdf4', 'padding': '8px 12px', 'border': '1px solid #164836'}
         )
         
         return f"{r2:.3f}", f"{f_pval:.2e}", f"F={f_stat:.2f} (p={anova_p:.2e})", fig, coef_table
