@@ -14,15 +14,15 @@ import plotly.express as px
 from dash import html, dcc, Input, Output, callback
 
 import plotly.io as pio
-pio.templates.default = "plotly_dark"
+pio.templates.default = "plotly_white"
 
 PLOT_LAYOUT = {
-    'template': 'plotly_dark',
-    'paper_bgcolor': '#081a13',
-    'plot_bgcolor': '#0c241b',
-    'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'template': 'plotly_white',
+    'paper_bgcolor': 'rgba(0,0,0,0)',
+    'plot_bgcolor': 'rgba(0,0,0,0)',
+    'font': {'family': 'Plus Jakarta Sans, sans-serif'},
+    'xaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
+    'yaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
 DARK_LAYOUT = PLOT_LAYOUT
@@ -101,7 +101,7 @@ def central_tendency_layout():
                         ], className="small text-muted pl-3")
                     ], className="mt-3 p-3 bg-dark rounded border border-secondary")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -111,7 +111,7 @@ def central_tendency_layout():
                             html.Div(id="m1-val-mean", className="stat-card-value text-primary"),
                             html.Div("Sum of values / N", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -119,7 +119,7 @@ def central_tendency_layout():
                             html.Div(id="m1-val-median", className="stat-card-value text-success"),
                             html.Div("Middle value (robust)", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -127,14 +127,14 @@ def central_tendency_layout():
                             html.Div(id="m1-val-mode", className="stat-card-value text-warning"),
                             html.Div("Peak density value", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m1-graph-central", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def variability_layout():
@@ -172,7 +172,9 @@ def variability_layout():
                         ],
                         value='all',
                         inline=False,
-                        className="mb-3 text-light"
+                        className="mb-3 custom-radio-group",
+                        labelClassName="custom-radio-label",
+                        inputClassName="custom-radio-input me-2"
                     ),
                     
                     html.Div([
@@ -184,7 +186,7 @@ def variability_layout():
                         html.Div("CV = (s / x̄) × 100%", className="formula-badge d-block")
                     ], className="p-3 bg-dark rounded border border-secondary mt-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -194,7 +196,7 @@ def variability_layout():
                             html.Div(id="m1-disp-range-iqr", className="stat-card-value text-info", style={'fontSize': '1.35rem'}),
                             html.Div("Total Spread & Middle 50%", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -202,7 +204,7 @@ def variability_layout():
                             html.Div(id="m1-disp-variance", className="stat-card-value text-warning", style={'fontSize': '1.35rem'}),
                             html.Div("Average squared deviations", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -210,14 +212,14 @@ def variability_layout():
                             html.Div(id="m1-disp-cv", className="stat-card-value text-danger", style={'fontSize': '1.35rem'}),
                             html.Div("Relative Dispersion (s/μ)", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m1-graph-variability", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def graphical_summaries_layout():
@@ -295,14 +297,14 @@ def graphical_summaries_layout():
                         html.P("Histograms display continuous frequencies; Bar charts compare discrete categories; Scatter plots uncover bivariate associations.", className="small text-muted mb-0")
                     ], className="p-3 bg-dark rounded border border-secondary mt-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
                     dcc.Graph(id="m1-graph-summaries", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def register_callbacks(app):

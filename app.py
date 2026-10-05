@@ -12,7 +12,7 @@ from dash import html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
 import plotly.io as pio
-pio.templates.default = "plotly_dark"
+pio.templates.default = "plotly_white"
 
 # Import modules
 from modules import (
@@ -23,11 +23,11 @@ from modules import (
     module5_capstone
 )
 
-# Initialize Dash application with Bootswatch Darkly theme and custom styles
+# Initialize Dash application with Bootswatch Flatly light theme and custom styles
 app = dash.Dash(
     __name__,
     external_stylesheets=[
-        dbc.themes.DARKLY,
+        dbc.themes.FLATLY,
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     ],
     suppress_callback_exceptions=True,
@@ -50,6 +50,10 @@ navbar = html.Header([
         # Right Links Group
         html.Div([
             html.Span("10,000 Records • 2000–2024", className="navbar-meta-badge d-none d-lg-inline-block me-3"),
+            html.Button([
+                html.I(className="fa-solid fa-moon me-1", id="theme-btn-icon"),
+                html.Span("Dark Mode", id="theme-btn-label")
+            ], id="theme-toggle-btn", className="btn-theme-toggle me-3", n_clicks=0),
             html.A([html.I(className="fa-solid fa-book-open me-1"), "Docs"], href="#", className="navbar-link me-3"),
             html.A([html.I(className="fa-brands fa-github me-1"), "Repo"], href="https://github.com", target="_blank", className="navbar-link")
         ], className="navbar-links-group")
@@ -57,7 +61,8 @@ navbar = html.Header([
 ], className="navbar-custom mb-3")
 
 # Main App Layout
-app.layout = html.Div([
+app.layout = html.Div(id="app-container", className="theme-light", children=[
+    dcc.Store(id="theme-store", data="light", storage_type="local"),
     navbar,
     
     html.Div([
@@ -120,6 +125,27 @@ module2_probability.register_callbacks(app)
 module3_inferential.register_callbacks(app)
 module4_visualization.register_callbacks(app)
 module5_capstone.register_callbacks(app)
+
+# Theme Switcher Callback
+@app.callback(
+    [Output("app-container", "className"),
+     Output("theme-btn-icon", "className"),
+     Output("theme-btn-label", "children"),
+     Output("theme-store", "data")],
+    Input("theme-toggle-btn", "n_clicks"),
+    dash.State("theme-store", "data"),
+    prevent_initial_call=False
+)
+def toggle_theme(n_clicks, current_theme):
+    if n_clicks is None or n_clicks == 0:
+        theme = current_theme or "light"
+    else:
+        theme = "dark" if current_theme == "light" else "light"
+        
+    if theme == "dark":
+        return "theme-dark", "fa-solid fa-sun me-1", "Light Mode", "dark"
+    else:
+        return "theme-light", "fa-solid fa-moon me-1", "Dark Mode", "light"
 
 # Main router callback
 @app.callback(

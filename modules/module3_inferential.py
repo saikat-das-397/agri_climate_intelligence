@@ -12,15 +12,15 @@ import plotly.express as px
 from dash import html, dcc, Input, Output, callback
 
 import plotly.io as pio
-pio.templates.default = "plotly_dark"
+pio.templates.default = "plotly_white"
 
 PLOT_LAYOUT = {
-    'template': 'plotly_dark',
-    'paper_bgcolor': '#081a13',
-    'plot_bgcolor': '#0c241b',
-    'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'template': 'plotly_white',
+    'paper_bgcolor': 'rgba(0,0,0,0)',
+    'plot_bgcolor': 'rgba(0,0,0,0)',
+    'font': {'family': 'Plus Jakarta Sans, sans-serif'},
+    'xaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
+    'yaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
 DARK_LAYOUT = PLOT_LAYOUT
@@ -87,7 +87,7 @@ def clt_layout():
                         html.Div("Standard Error SE = σ / √n", className="formula-badge d-block")
                     ], className="p-3 bg-dark rounded border border-secondary mt-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -97,7 +97,7 @@ def clt_layout():
                             html.Div(id="m3-clt-pop-mean", className="stat-card-value text-muted"),
                             html.Div("True Mean of Parent", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -105,7 +105,7 @@ def clt_layout():
                             html.Div(id="m3-clt-samp-mean", className="stat-card-value text-primary"),
                             html.Div("E[X̄] Unbiased Estimator", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -113,14 +113,14 @@ def clt_layout():
                             html.Div(id="m3-clt-se", className="stat-card-value text-success"),
                             html.Div("Observed vs Theoretical σ/√n", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m3-graph-clt", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def confidence_intervals_layout():
@@ -160,7 +160,7 @@ def confidence_intervals_layout():
                         html.P("A 95% CI does not mean there is a 95% chance μ is inside this specific interval; it means 95% of all similarly constructed intervals across repeated samplings will capture μ.", className="small text-muted mb-0")
                     ], className="p-3 bg-dark rounded border border-secondary")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -170,7 +170,7 @@ def confidence_intervals_layout():
                             html.Div(id="m3-ci-stat-capture", className="stat-card-value text-success"),
                             html.Div("Success Rate out of 100 CIs", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-6 mb-3"),
+                    ], className="col-12 col-sm-6 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -178,14 +178,14 @@ def confidence_intervals_layout():
                             html.Div(id="m3-ci-stat-missed", className="stat-card-value text-danger"),
                             html.Div("Intervals outside true mean", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-6 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m3-graph-ci", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def hypothesis_testing_layout():
@@ -246,7 +246,7 @@ def hypothesis_testing_layout():
                         className="mb-3"
                     ),
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -256,7 +256,7 @@ def hypothesis_testing_layout():
                             html.Div(id="m3-ht-stat-val", className="stat-card-value text-warning"),
                             html.Div("Calculated Score", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -264,7 +264,7 @@ def hypothesis_testing_layout():
                             html.Div(id="m3-ht-pval", className="stat-card-value text-info"),
                             html.Div("P(Extreme | H₀ true)", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -272,14 +272,14 @@ def hypothesis_testing_layout():
                             html.Div(id="m3-ht-decision", className="stat-card-value", style={'fontSize': '1.15rem'}),
                             html.Div("Alpha Threshold Evaluation", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 col-md-4 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m3-graph-ht", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def chisq_power_layout():
@@ -302,7 +302,7 @@ def chisq_power_layout():
                     html.Label("High Climate Risk - Low Yield:", className="control-label mt-2"),
                     dcc.Slider(id="m3-chi-c4", min=20, max=200, step=10, value=130, marks={20: '20', 130: '130', 200: '200'}),
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -312,7 +312,7 @@ def chisq_power_layout():
                             html.Div(id="m3-chi-stat", className="stat-card-value text-warning"),
                             html.Div("Σ (O - E)² / E", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-6 mb-3"),
+                    ], className="col-12 col-sm-6 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -320,14 +320,14 @@ def chisq_power_layout():
                             html.Div(id="m3-chi-pval", className="stat-card-value text-info"),
                             html.Div("Degrees of Freedom df=1", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-6 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-6 mb-3"),
+                ], className="row g-2 g-md-3"),
                 
                 html.Div([
                     dcc.Graph(id="m3-graph-chisq", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def register_callbacks(app):

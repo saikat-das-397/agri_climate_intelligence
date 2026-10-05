@@ -13,15 +13,15 @@ import plotly.express as px
 from dash import html, dcc, Input, Output, callback
 
 import plotly.io as pio
-pio.templates.default = "plotly_dark"
+pio.templates.default = "plotly_white"
 
 PLOT_LAYOUT = {
-    'template': 'plotly_dark',
-    'paper_bgcolor': '#081a13',
-    'plot_bgcolor': '#0c241b',
-    'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'template': 'plotly_white',
+    'paper_bgcolor': 'rgba(0,0,0,0)',
+    'plot_bgcolor': 'rgba(0,0,0,0)',
+    'font': {'family': 'Plus Jakarta Sans, sans-serif'},
+    'xaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
+    'yaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
 DARK_LAYOUT = PLOT_LAYOUT
@@ -67,7 +67,7 @@ def comparison_layout():
                         html.Li("Static raster/vector exports")
                     ], className="small text-light pl-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             # Seaborn Card
             html.Div([
@@ -81,7 +81,7 @@ def comparison_layout():
                         html.Li("Cohesive color palettes")
                     ], className="small text-light pl-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             # Plotly & Dash Card
             html.Div([
@@ -95,8 +95,8 @@ def comparison_layout():
                         html.Li("Reactive server-side callbacks")
                     ], className="small text-light pl-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-4 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def chart_gallery_layout():
@@ -134,14 +134,14 @@ def chart_gallery_layout():
                         className="mb-3"
                     )
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
                     dcc.Graph(id="m4-graph-gallery", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def chart_wizard_layout():
@@ -192,7 +192,7 @@ def chart_wizard_layout():
                         className="mb-3"
                     )
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
@@ -202,8 +202,8 @@ def chart_wizard_layout():
                         dcc.Graph(id="m4-wiz-rec-graph", config={'displayModeBar': True, 'responsive': True})
                     ], className="stat-card")
                 ])
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def register_callbacks(app):
@@ -268,9 +268,9 @@ def register_callbacks(app):
                 color_discrete_sequence=px.colors.qualitative.Vivid
             )
             fig.update_layout(scene=dict(
-                xaxis=dict(backgroundcolor="#071912", gridcolor="rgba(52, 211, 153, 0.15)"),
-                yaxis=dict(backgroundcolor="#071912", gridcolor="rgba(52, 211, 153, 0.15)"),
-                zaxis=dict(backgroundcolor="#071912", gridcolor="rgba(52, 211, 153, 0.15)")
+                xaxis=dict(backgroundcolor="#f1f5f9", gridcolor="#cbd5e1"),
+                yaxis=dict(backgroundcolor="#f1f5f9", gridcolor="#cbd5e1"),
+                zaxis=dict(backgroundcolor="#f1f5f9", gridcolor="#cbd5e1")
             ))
             
         elif choice == 'density_contour':

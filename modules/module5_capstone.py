@@ -16,15 +16,15 @@ import plotly.express as px
 from dash import html, dcc, Input, Output, State, dash_table
 
 import plotly.io as pio
-pio.templates.default = "plotly_dark"
+pio.templates.default = "plotly_white"
 
 PLOT_LAYOUT = {
-    'template': 'plotly_dark',
-    'paper_bgcolor': '#081a13',
-    'plot_bgcolor': '#0c241b',
-    'font': {'color': '#f0fdf4', 'family': 'Plus Jakarta Sans, sans-serif'},
-    'xaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
-    'yaxis': {'gridcolor': 'rgba(52, 211, 153, 0.15)', 'zerolinecolor': 'rgba(52, 211, 153, 0.3)', 'tickfont': {'color': '#93c5b5'}, 'title_font': {'color': '#f0fdf4'}},
+    'template': 'plotly_white',
+    'paper_bgcolor': 'rgba(0,0,0,0)',
+    'plot_bgcolor': 'rgba(0,0,0,0)',
+    'font': {'family': 'Plus Jakarta Sans, sans-serif'},
+    'xaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
+    'yaxis': {'gridcolor': 'rgba(128,128,128,0.18)', 'zerolinecolor': 'rgba(128,128,128,0.3)'},
     'margin': {'l': 40, 'r': 30, 't': 40, 'b': 40}
 }
 DARK_LAYOUT = PLOT_LAYOUT
@@ -69,7 +69,7 @@ def part1_layout():
                     html.Div(f"{total_records:,}", className="stat-card-value text-primary"),
                     html.Div("10 Countries & 10 Crop Types", className="stat-card-subtext")
                 ], className="stat-card")
-            ], className="col-md-3 mb-3"),
+            ], className="col-12 col-sm-6 col-lg-3 mb-3"),
             
             html.Div([
                 html.Div([
@@ -77,7 +77,7 @@ def part1_layout():
                     html.Div(f"{missing_count}", className="stat-card-value text-success", id="m5-card-missing"),
                     html.Div("Complete Data Integrity", className="stat-card-subtext")
                 ], className="stat-card")
-            ], className="col-md-3 mb-3"),
+            ], className="col-12 col-sm-6 col-lg-3 mb-3"),
             
             html.Div([
                 html.Div([
@@ -85,7 +85,7 @@ def part1_layout():
                     html.Div(f"{df['Crop_Yield_MT_per_HA'].mean():.2f} MT/ha", className="stat-card-value text-success"),
                     html.Div(f"Std Dev: {df['Crop_Yield_MT_per_HA'].std():.2f}", className="stat-card-subtext")
                 ], className="stat-card")
-            ], className="col-md-3 mb-3"),
+            ], className="col-12 col-sm-6 col-lg-3 mb-3"),
             
             html.Div([
                 html.Div([
@@ -93,8 +93,8 @@ def part1_layout():
                     html.Div(f"${df['Economic_Impact_Million_USD'].mean():.1f}M", className="stat-card-value text-danger"),
                     html.Div("Per Region/Year Cycle", className="stat-card-subtext")
                 ], className="stat-card")
-            ], className="col-md-3 mb-3"),
-        ], className="row"),
+            ], className="col-12 col-sm-6 col-lg-3 mb-3"),
+        ], className="row g-3 g-md-4"),
         
         # Cleaning & Outlier Controls
         html.Div([
@@ -138,21 +138,21 @@ def part1_layout():
                         className="mb-3"
                     ),
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 html.Div([
                     dcc.Graph(id="m5-graph-eda-dist", config={'displayModeBar': True, 'responsive': True})
                 ], className="stat-card mb-4"),
-            ], className="col-lg-8 mb-4")
-        ], className="row"),
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4"),
         
         # Summary Statistics Table
         html.Div([
             html.Div([
                 html.H5("Comprehensive Parametric & Non-Parametric Summary Matrix (2024 Dataset)", className="control-label"),
                 html.P("Detailed evaluation of Central Tendency, Dispersion, Skewness, and Kurtosis across numeric features.", className="control-desc"),
-                html.Div(id="m5-summary-table-container")
+                html.Div(id="m5-summary-table-container", className="table-responsive-wrapper")
             ], className="stat-card")
         ], className="mb-4")
     ])
@@ -214,7 +214,7 @@ def part2_layout():
                         html.P("R² measures variance explained; F-test evaluates overall regression significance.", className="small text-muted mb-0")
                     ], className="p-3 bg-dark rounded border border-secondary mt-3")
                 ], className="stat-card h-100")
-            ], className="col-lg-4 mb-4"),
+            ], className="col-12 col-lg-4 mb-4"),
             
             html.Div([
                 # Regression KPI Cards
@@ -225,7 +225,7 @@ def part2_layout():
                             html.Div(id="m5-val-r2", className="stat-card-value text-primary"),
                             html.Div("Explained Variance", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -233,7 +233,7 @@ def part2_layout():
                             html.Div(id="m5-val-fpval", className="stat-card-value text-success"),
                             html.Div("Overall Model Significance", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
+                    ], className="col-12 col-sm-4 mb-3"),
                     
                     html.Div([
                         html.Div([
@@ -241,8 +241,8 @@ def part2_layout():
                             html.Div(id="m5-val-anova", className="stat-card-value text-warning"),
                             html.Div("Between-group variance", className="stat-card-subtext")
                         ], className="stat-card")
-                    ], className="col-md-4 mb-3"),
-                ], className="row"),
+                    ], className="col-12 col-sm-4 mb-3"),
+                ], className="row g-3 g-md-4"),
                 
                 # Regression Diagnostic & Scatter
                 html.Div([
@@ -252,10 +252,10 @@ def part2_layout():
                 # Coefficients Table
                 html.Div([
                     html.H5("Fitted OLS Coefficients & Significance Tests (t-stat & p-value)", className="control-label"),
-                    html.Div(id="m5-coef-table-container")
+                    html.Div(id="m5-coef-table-container", className="table-responsive-wrapper")
                 ], className="stat-card")
-            ], className="col-lg-8 mb-4")
-        ], className="row")
+            ], className="col-12 col-lg-8 mb-4")
+        ], className="row g-3 g-md-4")
     ])
 
 def part3_layout():
@@ -295,7 +295,7 @@ def part3_layout():
                             html.Li([html.B("Outlier Sensitivity: "), "Extreme climate event years exhibited heavy right-tail economic damages requiring non-parametric median metrics."])
                         ], className="text-muted small pl-3")
                     ], className="stat-card h-100")
-                ], className="col-lg-7 mb-4"),
+                ], className="col-12 col-lg-7 mb-4"),
                 
                 # Actionable Recommendations & Report Generator
                 html.Div([
@@ -325,8 +325,8 @@ def part3_layout():
                         html.Button("📥 Download Executive Capstone Report (.txt)", id="m5-btn-download-report", className="btn btn-primary-glow btn-block w-100"),
                         dcc.Download(id="m5-download-report-file")
                     ], className="stat-card h-100")
-                ], className="col-lg-5 mb-4")
-            ], className="row")
+                ], className="col-12 col-lg-5 mb-4")
+            ], className="row g-3 g-md-4")
         ])
     ])
 
@@ -413,16 +413,16 @@ def register_callbacks(app):
             data=summary_df.to_dict('records'),
             columns=[{'name': i, 'id': i} for i in summary_df.columns],
             style_header={
-                'backgroundColor': '#071a13',
-                'color': '#34d399',
+                'backgroundColor': '#f1f5f9',
+                'color': '#065f46',
                 'fontWeight': 'bold',
-                'borderBottom': '1.5px solid #164836'
+                'borderBottom': '2px solid #cbd5e1'
             },
             style_cell={
-                'backgroundColor': '#0c241b',
-                'color': '#f0fdf4',
+                'backgroundColor': '#ffffff',
+                'color': '#0f172a',
                 'padding': '10px 14px',
-                'border': '1px solid #164836',
+                'border': '1px solid #e2e8f0',
                 'fontFamily': 'Plus Jakarta Sans, sans-serif'
             },
             style_as_list_view=True
@@ -492,8 +492,8 @@ def register_callbacks(app):
         coef_table = dash_table.DataTable(
             data=coef_df.to_dict('records'),
             columns=[{'name': i, 'id': i} for i in coef_df.columns],
-            style_header={'backgroundColor': '#071a13', 'color': '#34d399', 'fontWeight': 'bold', 'borderBottom': '1.5px solid #164836'},
-            style_cell={'backgroundColor': '#0c241b', 'color': '#f0fdf4', 'padding': '8px 12px', 'border': '1px solid #164836'}
+            style_header={'backgroundColor': '#f1f5f9', 'color': '#065f46', 'fontWeight': 'bold', 'borderBottom': '2px solid #cbd5e1'},
+            style_cell={'backgroundColor': '#ffffff', 'color': '#0f172a', 'padding': '8px 12px', 'border': '1px solid #e2e8f0'}
         )
         
         return f"{r2:.3f}", f"{f_pval:.2e}", f"F={f_stat:.2f} (p={anova_p:.2e})", fig, coef_table
