@@ -44,11 +44,35 @@ def layout():
             html.P("Analyze global crop yield benchmarks, evaluate temperature and precipitation dispersion, and uncover regional farm distribution patterns.", className="section-subtitle")
         ]),
         
-        dcc.Tabs(id="m1-subtabs", value="central-tendency", children=[
-            dcc.Tab(label="1. Benchmark Yields & Central Trends", value="central-tendency"),
-            dcc.Tab(label="2. Climate Dispersion & Anomaly Bands", value="variability"),
-            dcc.Tab(label="3. Global Farm Distributions & Explorer", value="graphical-summaries")
-        ], className="mb-4"),
+        html.Div([
+            dcc.Tabs(
+                id="m1-subtabs",
+                value="central-tendency",
+                parent_className="subtabs-nav-container",
+                className="subtabs-root",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="1. Benchmark Yields & Central Trends",
+                        value="central-tendency",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="2. Climate Dispersion & Anomaly Bands",
+                        value="variability",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="3. Global Farm Distributions & Explorer",
+                        value="graphical-summaries",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    )
+                ]
+            )
+        ], className="subtabs-bar-wrapper mb-4"),
         
         html.Div(id="m1-content")
     ])

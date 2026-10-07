@@ -43,11 +43,35 @@ def layout():
             html.P("Compare analytical visualization frameworks, explore multidimensional 3D climate-yield dynamics, and receive smart visual recommendations.", className="section-subtitle")
         ]),
         
-        dcc.Tabs(id="m4-subtabs", value="tool-comparison", children=[
-            dcc.Tab(label="1. Data Science Graphics Ecosystem", value="tool-comparison"),
-            dcc.Tab(label="2. Multidimensional Agro-Climatic Gallery", value="chart-gallery"),
-            dcc.Tab(label="3. Intelligent Chart Selection Guide", value="chart-wizard")
-        ], className="mb-4"),
+        html.Div([
+            dcc.Tabs(
+                id="m4-subtabs",
+                value="tool-comparison",
+                parent_className="subtabs-nav-container",
+                className="subtabs-root",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="1. Data Science Graphics Ecosystem",
+                        value="tool-comparison",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="2. Multidimensional Agro-Climatic Gallery",
+                        value="chart-gallery",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="3. Intelligent Chart Selection Guide",
+                        value="chart-wizard",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    )
+                ]
+            )
+        ], className="subtabs-bar-wrapper mb-4"),
         
         html.Div(id="m4-content")
     ])

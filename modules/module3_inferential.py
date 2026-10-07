@@ -33,12 +33,41 @@ def layout():
             html.P("Simulate multi-farm sampling under the Central Limit Theorem, construct yield benchmark confidence intervals, and test the statistical significance of climate anomalies.", className="section-subtitle")
         ]),
         
-        dcc.Tabs(id="m3-subtabs", value="clt-simulator", children=[
-            dcc.Tab(label="1. Regional Farm Sampling (CLT)", value="clt-simulator"),
-            dcc.Tab(label="2. Yield Benchmark Confidence Intervals", value="confidence-intervals"),
-            dcc.Tab(label="3. Climate Shift Significance Testing", value="hypothesis-testing"),
-            dcc.Tab(label="4. Adaptation Independence & Risk Analysis", value="chisq-power")
-        ], className="mb-4"),
+        html.Div([
+            dcc.Tabs(
+                id="m3-subtabs",
+                value="clt-simulator",
+                parent_className="subtabs-nav-container",
+                className="subtabs-root",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="1. Regional Farm Sampling (CLT)",
+                        value="clt-simulator",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="2. Yield Benchmark Confidence Intervals",
+                        value="confidence-intervals",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="3. Climate Shift Significance Testing",
+                        value="hypothesis-testing",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="4. Adaptation Independence & Risk Analysis",
+                        value="chisq-power",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    )
+                ]
+            )
+        ], className="subtabs-bar-wrapper mb-4"),
         
         html.Div(id="m3-content")
     ])

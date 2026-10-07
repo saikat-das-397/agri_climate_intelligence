@@ -32,11 +32,35 @@ def layout():
             html.P("Model early drought warning systems via Bayes' Theorem, quantify extreme weather occurrences, and analyze long-term yield loss expectations.", className="section-subtitle")
         ]),
         
-        dcc.Tabs(id="m2-subtabs", value="bayes-fundamentals", children=[
-            dcc.Tab(label="1. Drought Early Warning & Bayes' System", value="bayes-fundamentals"),
-            dcc.Tab(label="2. Precipitation & Shock Distribution Sandbox", value="distributions"),
-            dcc.Tab(label="3. Expected Loss Convergence & Law of Large Numbers", value="expectation-lln")
-        ], className="mb-4"),
+        html.Div([
+            dcc.Tabs(
+                id="m2-subtabs",
+                value="bayes-fundamentals",
+                parent_className="subtabs-nav-container",
+                className="subtabs-root",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="1. Drought Early Warning & Bayes' System",
+                        value="bayes-fundamentals",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="2. Precipitation & Shock Distribution Sandbox",
+                        value="distributions",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="3. Expected Loss Convergence & Law of Large Numbers",
+                        value="expectation-lln",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    )
+                ]
+            )
+        ], className="subtabs-bar-wrapper mb-4"),
         
         html.Div(id="m2-content")
     ])

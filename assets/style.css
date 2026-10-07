@@ -144,6 +144,7 @@ body, #app-container.theme-light {
     font-size: 0.86rem !important;
     padding: 0.75rem 1rem !important;
     cursor: pointer !important;
+    transition: all 0.2s ease !important;
 }
 
 .theme-light .custom-tab:hover {
@@ -157,10 +158,43 @@ body, #app-container.theme-light {
 .theme-light .tab--selected {
     color: #065f46 !important;
     background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid #cbd5e1 !important;
     border-top: 3px solid #059669 !important;
     border-bottom: 2px solid #ffffff !important;
     box-shadow: 0 -3px 12px rgba(5, 150, 105, 0.12) !important;
+    font-weight: 700 !important;
+}
+
+/* Light Subtabs */
+.theme-light .subtabs-bar-wrapper {
+    border-bottom: 1px solid #e2e8f0 !important;
+    background-color: transparent !important;
+    padding-bottom: 6px !important;
+}
+
+.theme-light .custom-subtab {
+    color: #475569 !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    padding: 0.5rem 0.95rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.theme-light .custom-subtab:hover {
+    color: #047857 !important;
+    background: #f0fdf4 !important;
+    border-color: #86efac !important;
+}
+
+.theme-light .custom-subtab--selected {
+    color: #065f46 !important;
+    background: #ecfdf5 !important;
+    border: 1.5px solid #10b981 !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.16) !important;
     font-weight: 700 !important;
 }
 
@@ -473,6 +507,7 @@ body, #app-container.theme-light {
     font-size: 0.86rem !important;
     padding: 0.75rem 1rem !important;
     cursor: pointer !important;
+    transition: all 0.2s ease !important;
 }
 
 .theme-dark .custom-tab:hover {
@@ -487,8 +522,42 @@ body, #app-container.theme-light {
     color: #34d399 !important;
     background: #0c241b !important;
     border: 1.5px solid #10b981 !important;
+    border-top: 3px solid #34d399 !important;
     border-bottom: 2px solid #0c241b !important;
     box-shadow: 0 -4px 14px rgba(16, 185, 129, 0.25) !important;
+    font-weight: 700 !important;
+}
+
+/* Dark Subtabs */
+.theme-dark .subtabs-bar-wrapper {
+    border-bottom: 1px solid rgba(52, 211, 153, 0.2) !important;
+    background-color: transparent !important;
+    padding-bottom: 6px !important;
+}
+
+.theme-dark .custom-subtab {
+    color: #93c5b5 !important;
+    background: rgba(12, 36, 27, 0.6) !important;
+    border: 1px solid rgba(52, 211, 153, 0.18) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    padding: 0.5rem 0.95rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.theme-dark .custom-subtab:hover {
+    color: #f0fdf4 !important;
+    background: rgba(16, 185, 129, 0.18) !important;
+    border-color: rgba(52, 211, 153, 0.35) !important;
+}
+
+.theme-dark .custom-subtab--selected {
+    color: #ffffff !important;
+    background: #064e3b !important;
+    border: 1.5px solid #34d399 !important;
+    box-shadow: 0 2px 10px rgba(52, 211, 153, 0.25) !important;
     font-weight: 700 !important;
 }
 
@@ -880,33 +949,122 @@ body, #app-container.theme-light {
 }
 
 /* Tabs */
-.tabs-bar-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-.tabs-bar-wrapper::-webkit-scrollbar {
-    display: none;
+.tabs-bar-wrapper,
+.subtabs-bar-wrapper {
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
+    touch-action: pan-x pan-y !important;
+    overscroll-behavior-y: auto !important;
+    scrollbar-width: thin !important;
+    display: block !important;
 }
 
-.single-line-tabs, .single-line-tabs > div {
-    display: flex !important;
+.tabs-bar-wrapper::-webkit-scrollbar,
+.subtabs-bar-wrapper::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tabs-bar-wrapper::-webkit-scrollbar-track,
+.subtabs-bar-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+}
+
+.tabs-bar-wrapper::-webkit-scrollbar-thumb,
+.subtabs-bar-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.5);
+    border-radius: 4px;
+}
+
+.tabs-bar-wrapper > div,
+.subtabs-bar-wrapper > div,
+.single-line-tabs,
+.subtabs-root {
+    display: block !important;
+    width: 100% !important;
+}
+
+.single-line-tabs > div,
+.subtabs-root > div,
+.tab-container,
+.tabs-nav-container,
+.subtabs-nav-container {
+    display: inline-flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    white-space: nowrap !important;
+    align-items: stretch !important;
+    width: max-content !important;
+    min-width: 100% !important;
     gap: 0.35rem !important;
     border-bottom: none !important;
-    width: 100% !important;
     background-color: transparent !important;
+    box-sizing: border-box !important;
+    padding: 2px 2px 4px 2px !important;
 }
 
-.custom-tab, .nav-tabs .nav-link, .tab {
-    flex: 1 1 0% !important;
-    min-width: fit-content !important;
+/* Force override of Dash built-in mobile .tab { width: 100% } */
+.tabs-bar-wrapper .tab,
+.tabs-bar-wrapper .tab--selected,
+.tabs-bar-wrapper .custom-tab,
+.tabs-bar-wrapper .custom-tab--selected,
+.subtabs-bar-wrapper .tab,
+.subtabs-bar-wrapper .tab--selected,
+.subtabs-bar-wrapper .custom-subtab,
+.subtabs-bar-wrapper .custom-subtab--selected,
+div.tab,
+div.tab--selected,
+div.custom-tab,
+div.custom-tab--selected,
+div.custom-subtab,
+div.custom-subtab--selected {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: max-content !important;
     white-space: nowrap !important;
-    text-align: center !important;
+    box-sizing: border-box !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: pan-x pan-y !important;
+    cursor: pointer !important;
+    float: none !important;
+}
+
+.custom-tab:active,
+.custom-subtab:active {
+    transform: scale(0.98);
+}
+
+@media (min-width: 1200px) {
+    .tabs-bar-wrapper .single-line-tabs > div,
+    .tabs-bar-wrapper .tabs-nav-container {
+        display: flex !important;
+        width: 100% !important;
+    }
+    .tabs-bar-wrapper .custom-tab,
+    .tabs-bar-wrapper .tab {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+    .subtabs-bar-wrapper .subtabs-nav-container,
+    .subtabs-bar-wrapper .subtabs-root > div {
+        display: flex !important;
+        width: 100% !important;
+    }
+    .subtabs-bar-wrapper .custom-subtab {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
 }
 
 /* Buttons */
@@ -1095,6 +1253,35 @@ body, #app-container.theme-light {
     .stat-card-value {
         font-size: 1.55rem !important;
     }
+    .tabs-bar-wrapper,
+    .subtabs-bar-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 4px !important;
+    }
+    .tabs-nav-container,
+    .subtabs-nav-container,
+    .single-line-tabs,
+    .single-line-tabs > div,
+    .subtabs-root > div {
+        width: max-content !important;
+        min-width: 100% !important;
+        gap: 0.35rem !important;
+    }
+    .custom-tab,
+    .nav-tabs .nav-link,
+    .tab {
+        flex: 0 0 auto !important;
+        min-width: max-content !important;
+        padding: 0.65rem 0.95rem !important;
+        font-size: 0.84rem !important;
+    }
+    .custom-subtab {
+        flex: 0 0 auto !important;
+        min-width: max-content !important;
+        padding: 0.5rem 0.85rem !important;
+        font-size: 0.8rem !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1112,23 +1299,98 @@ body, #app-container.theme-light {
     .brand-title {
         font-size: 0.95rem !important;
     }
-    .tabs-bar-wrapper {
-        overflow-x: scroll !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding-bottom: 4px !important;
+    .tabs-bar-wrapper,
+    .subtabs-bar-wrapper {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 1.25rem !important;
+        border-bottom: none !important;
+        display: block !important;
+        width: 100% !important;
     }
-    .single-line-tabs, .single-line-tabs > div {
+    .single-line-tabs,
+    .single-line-tabs > div,
+    .tabs-nav-container,
+    .subtabs-nav-container,
+    .subtabs-root,
+    .subtabs-root > div {
         display: flex !important;
+        flex-direction: column !important;
         flex-wrap: nowrap !important;
-        gap: 0.25rem !important;
-        min-width: max-content !important;
+        gap: 0.45rem !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 0 !important;
     }
-    .custom-tab, .nav-tabs .nav-link, .tab {
+    .custom-tab,
+    .nav-tabs .nav-link,
+    .tab,
+    .custom-subtab {
         flex: 0 0 auto !important;
-        min-width: 130px !important;
-        padding: 0.55rem 0.75rem !important;
-        font-size: 0.78rem !important;
-        border-radius: 8px 8px 0 0 !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
+        padding: 0.7rem 1rem !important;
+        font-size: 0.86rem !important;
+        border-radius: 8px !important;
+        min-height: 42px !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    .theme-light .custom-tab,
+    .theme-light .tab {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+    }
+    .theme-light .custom-tab--selected,
+    .theme-light .tab--selected {
+        border: 1px solid #cbd5e1 !important;
+        border-left: 4px solid #059669 !important;
+        background: #ecfdf5 !important;
+        color: #065f46 !important;
+        box-shadow: 0 2px 8px rgba(5, 150, 105, 0.12) !important;
+    }
+    .theme-light .custom-subtab {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        background: #f8fafc !important;
+        font-size: 0.8rem !important;
+        padding: 0.55rem 0.85rem !important;
+    }
+    .theme-light .custom-subtab--selected {
+        border: 1px solid #10b981 !important;
+        border-left: 4px solid #059669 !important;
+        background: #ecfdf5 !important;
+        color: #065f46 !important;
+    }
+    .theme-dark .custom-tab,
+    .theme-dark .tab {
+        border: 1px solid rgba(52, 211, 153, 0.2) !important;
+        border-radius: 8px !important;
+        background: rgba(12, 36, 27, 0.7) !important;
+    }
+    .theme-dark .custom-tab--selected,
+    .theme-dark .tab--selected {
+        border: 1px solid #10b981 !important;
+        border-left: 4px solid #34d399 !important;
+        background: #064e3b !important;
+        color: #ffffff !important;
+        box-shadow: 0 2px 10px rgba(52, 211, 153, 0.25) !important;
+    }
+    .theme-dark .custom-subtab {
+        border: 1px solid rgba(52, 211, 153, 0.18) !important;
+        border-radius: 8px !important;
+        background: rgba(12, 36, 27, 0.6) !important;
+        font-size: 0.8rem !important;
+        padding: 0.55rem 0.85rem !important;
+    }
+    .theme-dark .custom-subtab--selected {
+        border: 1px solid #34d399 !important;
+        border-left: 4px solid #34d399 !important;
+        background: #064e3b !important;
+        color: #ffffff !important;
     }
     .rc-slider {
         padding: 12px 10px 12px 10px !important;
@@ -1141,6 +1403,37 @@ body, #app-container.theme-light {
     }
     .btn-theme-toggle {
         padding: 0.25rem 0.55rem !important;
+        font-size: 0.72rem !important;
+    }
+    .custom-tab,
+    .nav-tabs .nav-link,
+    .tab {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.65rem 0.85rem !important;
+        font-size: 0.82rem !important;
+    }
+    .custom-subtab {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.76rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .custom-tab,
+    .nav-tabs .nav-link,
+    .tab {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.78rem !important;
+    }
+    .custom-subtab {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.45rem 0.65rem !important;
         font-size: 0.72rem !important;
     }
 }

@@ -46,11 +46,35 @@ def layout():
             html.P("Comprehensive empirical study across 10,000 global agricultural records: farm filtering, multivariate climate regression, and strategic policy roadmap.", className="section-subtitle")
         ]),
         
-        dcc.Tabs(id="m5-subtabs", value="part1-eda-cleaning", children=[
-            dcc.Tab(label="Part 1: Global Farm Profiling & Filtering", value="part1-eda-cleaning"),
-            dcc.Tab(label="Part 2: Multivariate Climate Impact Regression", value="part2-modeling"),
-            dcc.Tab(label="Part 3: Actionable Policy & Executive Report", value="part3-presentation")
-        ], className="mb-4"),
+        html.Div([
+            dcc.Tabs(
+                id="m5-subtabs",
+                value="part1-eda-cleaning",
+                parent_className="subtabs-nav-container",
+                className="subtabs-root",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="Part 1: Global Farm Profiling & Filtering",
+                        value="part1-eda-cleaning",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="Part 2: Multivariate Climate Impact Regression",
+                        value="part2-modeling",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    ),
+                    dcc.Tab(
+                        label="Part 3: Actionable Policy & Executive Report",
+                        value="part3-presentation",
+                        className="custom-subtab",
+                        selected_className="custom-subtab--selected"
+                    )
+                ]
+            )
+        ], className="subtabs-bar-wrapper mb-4"),
         
         html.Div(id="m5-content")
     ])

@@ -68,38 +68,45 @@ app.layout = html.Div(id="app-container", className="theme-light", children=[
     html.Div([
         # Single-Line Main Navigation Tabs
         html.Div([
-            dcc.Tabs(id="main-tabs", value="tab-module1", children=[
-                dcc.Tab(
-                    label="1. Crop Baselines & Spread",
-                    value="tab-module1",
-                    className="custom-tab",
-                    selected_className="custom-tab--selected"
-                ),
-                dcc.Tab(
-                    label="2. Climate Risk & Shocks",
-                    value="tab-module2",
-                    className="custom-tab",
-                    selected_className="custom-tab--selected"
-                ),
-                dcc.Tab(
-                    label="3. Yield Impact & Hypotheses",
-                    value="tab-module3",
-                    className="custom-tab",
-                    selected_className="custom-tab--selected"
-                ),
-                dcc.Tab(
-                    label="4. Visual Intelligence",
-                    value="tab-module4",
-                    className="custom-tab",
-                    selected_className="custom-tab--selected"
-                ),
-                dcc.Tab(
-                    label="5. Adaptation & Policy Capstone",
-                    value="tab-module5",
-                    className="custom-tab",
-                    selected_className="custom-tab--selected"
-                ),
-            ], className="single-line-tabs")
+            dcc.Tabs(
+                id="main-tabs",
+                value="tab-module1",
+                parent_className="tabs-nav-container",
+                className="single-line-tabs",
+                mobile_breakpoint=0,
+                children=[
+                    dcc.Tab(
+                        label="1. Crop Baselines & Spread",
+                        value="tab-module1",
+                        className="custom-tab",
+                        selected_className="custom-tab--selected"
+                    ),
+                    dcc.Tab(
+                        label="2. Climate Risk & Shocks",
+                        value="tab-module2",
+                        className="custom-tab",
+                        selected_className="custom-tab--selected"
+                    ),
+                    dcc.Tab(
+                        label="3. Yield Impact & Hypotheses",
+                        value="tab-module3",
+                        className="custom-tab",
+                        selected_className="custom-tab--selected"
+                    ),
+                    dcc.Tab(
+                        label="4. Visual Intelligence",
+                        value="tab-module4",
+                        className="custom-tab",
+                        selected_className="custom-tab--selected"
+                    ),
+                    dcc.Tab(
+                        label="5. Adaptation & Policy Capstone",
+                        value="tab-module5",
+                        className="custom-tab",
+                        selected_className="custom-tab--selected"
+                    ),
+                ]
+            )
         ], className="tabs-bar-wrapper mb-4"),
         
         # Dynamic Main Tab Content with smooth transitions
